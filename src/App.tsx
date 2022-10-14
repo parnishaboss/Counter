@@ -19,8 +19,9 @@ function App() {
         }
     }
     const ResetHandler = () => {
-        return (setCount(0))
-
+        if (count === 0) {
+            alert("Has already 0");
+        } else {(setCount(0))}
     }
     return (
         <div className="App">
