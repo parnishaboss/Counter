@@ -4,24 +4,30 @@ import {Button, Paper} from '@mui/material';
 
 function App() {
     const [count, setCount] = useState(0)
+    const [error, setError] = useState<string | null>(null)
     const AddHandler = () => {
         if (count === 5) {
-            alert("Stop, please stop. . .");
+            setError('"Stop, please stop. . ."')
         } else {
             setCount(count + 1);
+            setError('')
         }
     }
     const MinusHandler = () => {
         if (count === 0) {
-            alert("Сannot be lower than 0 ");
+            setError("Сannot be lower than 0 ");
         } else {
             setCount(count - 1);
+            setError('')
         }
     }
     const ResetHandler = () => {
         if (count === 0) {
-            alert("Has already 0");
-        } else {(setCount(0))}
+            setError("Has already 0");
+        } else {
+            setCount(0);
+            setError('')
+        }
     }
     return (
         <div className="App">
@@ -30,6 +36,7 @@ function App() {
                         <Paper elevation={6}>
                             <span className='counter'>{count}</span>
                         </Paper>
+                        {error && <div className="error-message">{error}</div>}
                         <div className='ButtonGroup'>
                             <Paper>
                                 <Button onClick={AddHandler} variant="outlined" color="success">+</Button>
