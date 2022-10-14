@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import {Button, Paper} from '@mui/material';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [count, setCount] = useState(0)
+    const AddHandler = () => {
+        if (count === 5) {
+            alert("Stop, please stop. . .");
+        } else {
+            setCount(count + 1);
+        }
+    }
+    const MinusHandler = () => {
+        if (count === 0) {
+            alert("Сannot be lower than 0 ");
+        } else {
+            setCount(count - 1);
+        }
+    }
+    const ResetHandler = () => {
+        return (setCount(0))
+
+    }
+    return (
+        <div className="App">
+                <Paper className='Body' elevation={12}>
+                    <div>
+                        <Paper elevation={6}>
+                            <span className='counter'>{count}</span>
+                        </Paper>
+                        <div className='ButtonGroup'>
+                            <Paper>
+                                <Button onClick={AddHandler} variant="outlined" color="success">+</Button>
+                            </Paper>
+                            <Paper>
+                                <Button onClick={MinusHandler} variant="contained" color="secondary">-</Button>
+                            </Paper>
+                            <Paper>
+                                <Button onClick={ResetHandler} variant="outlined" color="error">reset</Button>
+                            </Paper>
+                        </div>
+                    </div>
+                </Paper>
+        </div>
+    );
 }
 
 export default App;
